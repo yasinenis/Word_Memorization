@@ -6,8 +6,6 @@ import tkinter.messagebox as mb
 import textwrap
 from playsound import playsound
 
-
-
 class WordMemorizationApp(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -41,8 +39,7 @@ class WordMemorizationApp(tk.Frame):
         self.choose_file_button.pack(pady=20)
 
         self.workbook = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için
-        self.sheet = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için
-#--     
+        self.sheet = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için   
 
     def choose_file(self):
         file_path = fd.askopenfilename()
@@ -59,13 +56,16 @@ class WordMemorizationApp(tk.Frame):
             self.answer_buttons[answer].config(bg="red")
             self.answer_buttons[self.current_answer_index].config(bg="green")
             message = f"Incorrect. Selected: '{selected_text}', Correct: '{self.current_answer}'"
-            
-
 
         for i in range(4):
             self.answer_buttons[i].config(state=tk.DISABLED)
 
         self.next_button.config(state=tk.NORMAL)
+
+        # Bind <Return> key to Next button when it's enabled
+        if self.next_button['state'] == tk.NORMAL:
+            self.master.bind('<Return>', lambda event: self.next_button.invoke())
+
 
 
 
@@ -111,7 +111,6 @@ class WordMemorizationApp(tk.Frame):
         self.current_sentence = english_sentence
         self.current_answer = turkish_sentence
         self.current_answer_index = choices.index(turkish_sentence)
-
 
 
 
