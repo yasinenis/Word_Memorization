@@ -115,6 +115,17 @@ class WordMemorizationApp(tk.Frame):
 
 
 root = tk.Tk()
+
+# Center the window on the screen
+window_width = 800
+window_height = 800
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+x = (screen_width - window_width) // 2
+y = (screen_height - window_height) // 2
+root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
 app = WordMemorizationApp(master=root)
 app.mainloop()
+
 
