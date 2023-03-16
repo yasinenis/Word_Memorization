@@ -4,7 +4,7 @@ import tkinter.filedialog as fd
 import openpyxl as xl
 import tkinter.messagebox as mb
 import textwrap
-from playsound import playsound
+import winsound
 
 class WordMemorizationApp(tk.Frame):
     def __init__(self, master=None):
@@ -52,10 +52,11 @@ class WordMemorizationApp(tk.Frame):
         selected_text = self.answer_buttons[answer]["text"]
         if selected_text == self.current_answer:
             self.answer_buttons[answer].config(bg="green")
+            winsound.PlaySound("assets/cor2.wav", winsound.SND_ASYNC)
         else:
             self.answer_buttons[answer].config(bg="red")
             self.answer_buttons[self.current_answer_index].config(bg="green")
-            message = f"Incorrect. Selected: '{selected_text}', Correct: '{self.current_answer}'"
+            winsound.PlaySound("assets/wrong.wav", winsound.SND_ASYNC)
 
         for i in range(4):
             self.answer_buttons[i].config(state=tk.DISABLED)
