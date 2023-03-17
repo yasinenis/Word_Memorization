@@ -37,7 +37,22 @@ class WordMemorizationApp(tk.Frame):
 
         self.choose_file_button = tk.Button(self, text="Choose File", width=40, height=2, command=self.choose_file)
         self.choose_file_button.pack(pady=20)
+                # settings button
+        self.settings_button = tk.Button(self, text="Guide", width=20, height=2, command=self.show_settings)
+        self.settings_button.pack(pady=20)
 
+    def show_settings(self):
+        settings_window = tk.Toplevel(self)
+        settings_window.title("Guide")
+        settings_window.geometry("400x400")
+        settings_window.transient(self.master)
+        settings_window.grab_set()
+
+        # Add widgets to the settings window
+        # ...
+
+        settings_window.wait_window()
+                #------------
         self.workbook = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için
         self.sheet = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için   
 
@@ -66,8 +81,6 @@ class WordMemorizationApp(tk.Frame):
         # Bind <Return> key to Next button when it's enabled
         if self.next_button['state'] == tk.NORMAL:
             self.master.bind('<Return>', lambda event: self.next_button.invoke())
-
-
 
 
     def next_question(self):
@@ -112,7 +125,6 @@ class WordMemorizationApp(tk.Frame):
         self.current_sentence = english_sentence
         self.current_answer = turkish_sentence
         self.current_answer_index = choices.index(turkish_sentence)
-
 
 
 root = tk.Tk()
