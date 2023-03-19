@@ -11,8 +11,14 @@ class WordMemorizationApp(tk.Frame):
         super().__init__(master)
         self.master = master
         self.master.title("Word Memorization App")
-        self.master.geometry("800x800")
+        self.master.geometry("1920x1080")
+        self.master.attributes('-fullscreen', True)  # Fullscreen modu
         self.pack(fill="both", expand=True)
+
+        # Add icon to taskbar
+        self.master.iconbitmap("assets/brain.ico")
+
+
 
         # Add background image
         self.background_image = tk.PhotoImage(file="assets/gate3.png")
@@ -28,31 +34,68 @@ class WordMemorizationApp(tk.Frame):
 
         self.answer_buttons = []
         for i in range(4):
-            button = tk.Button(self.answer_frame, text="", width=50, height=10, command=lambda i=i: self.check_answer(i), wraplength=200, highlightbackground=None, highlightcolor=None)
+            button = tk.Button(self.answer_frame, text="", width=50, height=10, command=lambda i=i: self.check_answer(i), wraplength=200, highlightbackground=None, highlightcolor=None, bg="#bbae9f")
             self.answer_buttons.append(button)
             self.answer_buttons[i].grid(row=i//2, column=i%2, padx=0, pady=0)
 
-        self.next_button = tk.Button(self, text="Next", width=40, height=2, command=self.next_question, state=tk.DISABLED)
+        self.next_button = tk.Button(self, text="Next", width=40, height=2, command=self.next_question, state=tk.DISABLED, bg="#bbae9f")
         self.next_button.pack(pady=20)
 
-        self.choose_file_button = tk.Button(self, text="Choose File", width=40, height=2, command=self.choose_file)
+        self.choose_file_button = tk.Button(self, text="Choose File   📂", width=40, height=2, command=self.choose_file, fg="black", bg="#bbae9f")
         self.choose_file_button.pack(pady=20)
                 # settings button
-        self.settings_button = tk.Button(self, text="Guide", width=20, height=2, command=self.show_settings)
+        self.settings_button = tk.Button(self, text="Guide", width=20, height=2, command=self.show_settings, bg="#bbae9f")
         self.settings_button.pack(pady=20)
+
+        self.exit_button = tk.Button(self, text="Çık", width=20, height=2, command=self.master.destroy, bg="#bbae9f")
+        self.exit_button.pack(pady=20)
+
+                # Bind F11 key to toggle fullscreen
+        self.master.bind("<F11>", self.toggle_fullscreen)
+
+    def toggle_fullscreen(self, event=None):
+        """Toggle between fullscreen and normal mode."""
+        self.master.attributes("-fullscreen", not self.master.attributes("-fullscreen"))
+
 
     def show_settings(self):
         settings_window = tk.Toplevel(self)
         settings_window.title("Guide")
-        settings_window.geometry("400x400")
+
+        # Get screen width and height
+        screen_width = settings_window.winfo_screenwidth()
+        screen_height = settings_window.winfo_screenheight()
+
+        # Calculate coordinates for centering the settings window
+        settings_width = 600
+        settings_height = 400
+        x = (screen_width/2) - (settings_width/2)
+        y = (screen_height/2) - (settings_height/2)
+
+        # Set the geometry of the settings window to the center of the screen
+        settings_window.geometry("%dx%d+%d+%d" % (settings_width, settings_height, x, y))
+
         settings_window.transient(self.master)
         settings_window.grab_set()
+
+        tk.Label(settings_window, text="\n\n\nWhat Is This App ?").pack()
+        tk.Label(settings_window, text="This app developed to improve users foreign language word and setence knowledge. \n                                     ").pack()
+        tk.Label(settings_window, text="How It Works ?").pack()
+        tk.Label(settings_window, text="Import your google translete favorite words or google translate history as an exel file \nthen use choose file button and choose this exel file thused this program will ask \nyou meaning of words which coming from your file and which you have to learn. \n🙂").pack()
+        tk.Label(settings_window, text="Who Am I ?").pack()
+        tk.Label(settings_window, text="Hi I'm Yasin and Studying Computer Engineering at Recep Tayyip Erdogan University. \nI developed this program to improve my english word knowledge. \nThused I could improve my programming skils with english.").pack()
+        tk.Label(settings_window, text="Contact With Me").pack()
+        tk.Label(settings_window, text="LinkedIN :  - - -").pack()
+
 
         # Add widgets to the settings window
         # ...
 
         settings_window.wait_window()
                 #------------
+
+
+                
         self.workbook = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için
         self.sheet = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için   
 
@@ -112,9 +155,6 @@ class WordMemorizationApp(tk.Frame):
 
             random.shuffle(choices)
 
-        print(f"English Sentence: {english_sentence}")
-        print(f"Turkish Sentence: {turkish_sentence}")
-        print(f"Choices: {choices}")
 
         self.word_label.config(text=english_sentence)
 
@@ -129,9 +169,11 @@ class WordMemorizationApp(tk.Frame):
 
 root = tk.Tk()
 
+root.iconbitmap("assets/brain.ico") # Burada, ikonun yolunu belirtin
+
 # Center the window on the screen
-window_width = 800
-window_height = 800
+window_width = 1920
+window_height = 1080
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 x = (screen_width - window_width) // 2
