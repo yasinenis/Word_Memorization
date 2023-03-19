@@ -78,19 +78,19 @@ class WordMemorizationApp(tk.Frame):
         settings_window.transient(self.master)
         settings_window.grab_set()
 
-        tk.Label(settings_window, text="\n\n\nWhat Is This App ?").pack()
+        tk.Label(settings_window, text="\n\n\nWhat's This App ?", fg="#57bfa6", font= 30).pack()
         tk.Label(settings_window, text="This app developed to improve users foreign language word and setence knowledge. \n                                     ").pack()
-        tk.Label(settings_window, text="How It Works ?").pack()
-        tk.Label(settings_window, text="Import your google translete favorite words or google translate history as an exel file \nthen use choose file button and choose this exel file thused this program will ask \nyou meaning of words which coming from your file and which you have to learn. \n🙂").pack()
-        tk.Label(settings_window, text="Who Am I ?").pack()
+        tk.Label(settings_window, text="How It Works ?", fg="#57bfa6", font= 30).pack()
+        tk.Label(settings_window, text="Import your google translate favorite words or google translate history as an exel file \nthen use choose file button and choose this exel file thused this program will ask \nyou meaning of words which coming from your file and which you have to learn. \n🙂").pack()
+        tk.Label(settings_window, text="Who Am I ?", fg="#57bfa6", font= 30).pack()
         tk.Label(settings_window, text="Hi I'm Yasin and Studying Computer Engineering at Recep Tayyip Erdogan University. \nI developed this program to improve my english word knowledge. \nThused I could improve my programming skils with english.").pack()
-        tk.Label(settings_window, text="Contact With Me").pack()
+        tk.Label(settings_window, text="Contact With Me",fg="#57bfa6", font= 30).pack()
         tk.Label(settings_window, text="LinkedIN :  - - -").pack()
 
 
         # Add widgets to the settings window
         # ...
-
+        
         settings_window.wait_window()
                 #------------
 
