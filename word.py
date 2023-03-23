@@ -102,9 +102,15 @@ class WordMemorizationApp(tk.Frame):
     def choose_file(self):
         file_path = fd.askopenfilename()
         if file_path:
+            if not file_path.endswith('.xlsx'):
+                mb.showerror("Error", "Please choose only Exel file (file with .xlsx extension)")
+                return
             self.workbook = xl.load_workbook(filename=file_path)
             self.sheet = self.workbook.active
             self.next_question()
+        else:
+            mb.showerror("Error", "You have to choose an Exel file ^^")
+
 
     def check_answer(self, answer):
         selected_text = self.answer_buttons[answer]["text"]
