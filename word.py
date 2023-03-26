@@ -18,10 +18,10 @@ class WordMemorizationApp(tk.Frame):
         # Add icon to taskbar
         self.master.iconbitmap("assets/brain.ico")
 
-
+        renk = '#95a693'
 
         # Add background image
-        self.background_image = tk.PhotoImage(file="assets/gate3.png")
+        self.background_image = tk.PhotoImage(file="assets/graden.png")
         self.background_label = tk.Label(self, image=self.background_image)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -34,20 +34,20 @@ class WordMemorizationApp(tk.Frame):
 
         self.answer_buttons = []
         for i in range(4):
-            button = tk.Button(self.answer_frame, text="", width=50, height=10, command=lambda i=i: self.check_answer(i), wraplength=200, highlightbackground=None, highlightcolor=None, bg="#bbae9f")
+            button = tk.Button(self.answer_frame, text="", width=50, height=10, command=lambda i=i: self.check_answer(i), wraplength=200, highlightbackground=None, highlightcolor=None, bg=renk)
             self.answer_buttons.append(button)
             self.answer_buttons[i].grid(row=i//2, column=i%2, padx=0, pady=0)
 
-        self.next_button = tk.Button(self, text="Next", width=40, height=2, command=self.next_question, state=tk.DISABLED, bg="#bbae9f")
+        self.next_button = tk.Button(self, text="Next", width=40, height=2, command=self.next_question, state=tk.DISABLED, bg=renk)
         self.next_button.pack(pady=20)
 
-        self.choose_file_button = tk.Button(self, text="Choose File   📂", width=40, height=2, command=self.choose_file, fg="black", bg="#bbae9f")
+        self.choose_file_button = tk.Button(self, text="Choose File   📂", width=40, height=2, command=self.choose_file, fg="black", bg=renk)
         self.choose_file_button.pack(pady=20)
                 # settings button
-        self.settings_button = tk.Button(self, text="Guide", width=20, height=2, command=self.show_settings, bg="#bbae9f")
+        self.settings_button = tk.Button(self, text="Guide", width=20, height=2, command=self.show_settings, bg=renk)
         self.settings_button.pack(pady=20)
 
-        self.exit_button = tk.Button(self, text="Çık", width=20, height=2, command=self.master.destroy, bg="#bbae9f")
+        self.exit_button = tk.Button(self, text="Çık", width=20, height=2, command=self.master.destroy, bg=renk)
         self.exit_button.pack(pady=20)
 
                 # Bind F11 key to toggle fullscreen
