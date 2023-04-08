@@ -38,6 +38,11 @@ class WordMemorizationApp(tk.Frame):
             self.answer_buttons.append(button)
             self.answer_buttons[i].grid(row=i//2, column=i%2, padx=0, pady=0)
 
+        
+
+
+
+
         self.next_button = tk.Button(self, text="Next", width=40, height=2, command=self.next_question, state=tk.DISABLED, bg=renk)
         self.next_button.pack(pady=20)
 
@@ -130,6 +135,7 @@ class WordMemorizationApp(tk.Frame):
         # Bind <Return> key to Next button when it's enabled
         if self.next_button['state'] == tk.NORMAL:
             self.master.bind('<Return>', lambda event: self.next_button.invoke())
+            self.master.bind("<space>", lambda event: self.next_button.invoke())
 
 
     def next_question(self):
