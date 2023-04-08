@@ -26,8 +26,10 @@ class WordMemorizationApp(tk.Frame):
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         # Add other widgets
-        self.word_label = tk.Label(self, text="", font=("Helvetica", 24), wraplength=500)
+        self.word_label = tk.Label(self, text="", font=("Comfortaa", 24), wraplength=500)
         self.word_label.pack(pady=20)
+    
+
 
         self.answer_frame = tk.Frame(self)
         self.answer_frame.pack(expand=True)
