@@ -38,22 +38,24 @@ class WordMemorizationApp(tk.Frame):
             self.answer_buttons.append(button)
             self.answer_buttons[i].grid(row=i//2, column=i%2, padx=0, pady=0)
 
-        
+                        # BUTONLAR
 
-
-
-
-        self.next_button = tk.Button(self, text="Next", width=40, height=2, command=self.next_question, state=tk.DISABLED, bg=renk)
+        self.next_button = tk.Button(self, text="Next", width=43, height=2, command=self.next_question, state=tk.DISABLED, bg=renk)
         self.next_button.pack(pady=20)
+        self.next_button.place(x=800, y=870)
 
-        self.choose_file_button = tk.Button(self, text="Choose File   📂", width=40, height=2, command=self.choose_file, fg="black", bg=renk)
+        self.choose_file_button = tk.Button(self, text="Choose File   📂", width=43, height=2, command=self.choose_file, fg="black", bg=renk)
         self.choose_file_button.pack(pady=20)
+        self.choose_file_button.place(x=800, y=950)
+
                 # settings button
         self.settings_button = tk.Button(self, text="Guide", width=20, height=2, command=self.show_settings, bg=renk)
         self.settings_button.pack(pady=20)
+        self.settings_button.place(x=800, y=1000)
 
-        self.exit_button = tk.Button(self, text="Çık", width=20, height=2, command=self.master.destroy, bg=renk)
+        self.exit_button = tk.Button(self, text="Çık ", width=20, height=2, command=self.master.destroy, bg=renk)
         self.exit_button.pack(pady=20)
+        self.exit_button.place(x=960, y=1000)
 
                 # Bind F11 key to toggle fullscreen
         self.master.bind("<F11>", self.toggle_fullscreen)
