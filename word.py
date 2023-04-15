@@ -34,7 +34,7 @@ class WordMemorizationApp(tk.Frame):
         self.notes.place(x=1665, y=425)
 
         # Set default text
-        self.notes.insert(tk.END, "Note taking area...🪶")
+        self.notes.insert(tk.END, "Note taking area...")
 
         self.answer_frame = tk.Frame(self)
         self.answer_frame.pack(expand=True)
