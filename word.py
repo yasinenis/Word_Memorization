@@ -29,7 +29,12 @@ class WordMemorizationApp(tk.Frame):
         self.word_label = tk.Label(self, text="", font=("Comfortaa", 24), wraplength=500)
         self.word_label.pack(pady=20)
     
+        # Add note-taking area
+        self.notes = tk.Text(self, width=30, height=20, bg="white")
+        self.notes.place(x=1665, y=425)
 
+        # Set default text
+        self.notes.insert(tk.END, "Note taking area...🪶")
 
         self.answer_frame = tk.Frame(self)
         self.answer_frame.pack(expand=True)
