@@ -18,10 +18,10 @@ class WordMemorizationApp(tk.Frame):
         # Add icon to taskbar
         self.master.iconbitmap("assets/brain.ico")
 
-        renk = '#95a693'
+        renk = '#0e93cc'
 
         # Add background image
-        self.background_image = tk.PhotoImage(file="assets/graden.png")
+        self.background_image = tk.PhotoImage(file="assets/mavi.png")
         self.background_label = tk.Label(self, image=self.background_image)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
