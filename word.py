@@ -1,4 +1,4 @@
-import tkinter as tk 
+import tkinter as tk
 import random
 import tkinter.filedialog as fd
 import openpyxl as xl
@@ -28,7 +28,7 @@ class WordMemorizationApp(tk.Frame):
         # Add other widgets
         self.word_label = tk.Label(self, text="", font=("Comfortaa", 24), wraplength=500)
         self.word_label.pack(pady=20)
-    
+
         # Add note-taking area
         self.notes = tk.Text(self, width=30, height=20, bg="white")
         self.notes.place(x=1665, y=425)
@@ -45,7 +45,7 @@ class WordMemorizationApp(tk.Frame):
             self.answer_buttons.append(button)
             self.answer_buttons[i].grid(row=i//2, column=i%2, padx=0, pady=0)
 
-                        # BUTONLAR
+        # BUTONLAR
 
         self.next_button = tk.Button(self, text="Next", width=43, height=2, command=self.next_question, state=tk.DISABLED, bg=renk)
         self.next_button.pack(pady=20)
@@ -55,7 +55,7 @@ class WordMemorizationApp(tk.Frame):
         self.choose_file_button.pack(pady=20)
         self.choose_file_button.place(x=800, y=950)
 
-                # settings button
+        # settings button
         self.settings_button = tk.Button(self, text="Guide", width=20, height=2, command=self.show_settings, bg=renk)
         self.settings_button.pack(pady=20)
         self.settings_button.place(x=800, y=1000)
@@ -64,13 +64,15 @@ class WordMemorizationApp(tk.Frame):
         self.exit_button.pack(pady=20)
         self.exit_button.place(x=960, y=1000)
 
-                # Bind F11 key to toggle fullscreen
+        # Bind F11 key to toggle fullscreen
         self.master.bind("<F11>", self.toggle_fullscreen)
+
+        self.workbook = None
+        self.sheet = None
 
     def toggle_fullscreen(self, event=None):
         """Toggle between fullscreen and normal mode."""
         self.master.attributes("-fullscreen", not self.master.attributes("-fullscreen"))
-
 
     def show_settings(self):
         settings_window = tk.Toplevel(self)
@@ -92,26 +94,16 @@ class WordMemorizationApp(tk.Frame):
         settings_window.transient(self.master)
         settings_window.grab_set()
 
-        tk.Label(settings_window, text="\n\n\nWhat's This App ?", fg="#57bfa6", font= 30).pack()
+        tk.Label(settings_window, text="\n\n\nWhat's This App ?", fg="#57bfa6", font=30).pack()
         tk.Label(settings_window, text="This app developed to improve users foreign language word and setence knowledge. \n                                     ").pack()
-        tk.Label(settings_window, text="How It Works ?", fg="#57bfa6", font= 30).pack()
+        tk.Label(settings_window, text="How It Works ?", fg="#57bfa6", font=30).pack()
         tk.Label(settings_window, text="Import your google translate favorite words or google translate history as an exel file \nthen use choose file button and choose this exel file thused this program will ask \nyou meaning of words which coming from your file and which you have to learn. \n🙂").pack()
-        tk.Label(settings_window, text="Who Am I ?", fg="#57bfa6", font= 30).pack()
+        tk.Label(settings_window, text="Who Am I ?", fg="#57bfa6", font=30).pack()
         tk.Label(settings_window, text="Hi I'm Yasin and Studying Computer Engineering at Recep Tayyip Erdogan University. \nI developed this program to improve my english word knowledge. \nThused I could improve my programming skils with english.").pack()
-        tk.Label(settings_window, text="Contact With Me",fg="#57bfa6", font= 30).pack()
+        tk.Label(settings_window, text="Contact With Me", fg="#57bfa6", font=30).pack()
         tk.Label(settings_window, text="LinkedIN :  - - -").pack()
 
-
-        # Add widgets to the settings window
-        # ...
-        
         settings_window.wait_window()
-                #------------
-
-
-                
-        self.workbook = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için
-        self.sheet = None  # Eklendi: Dosya seçilmediği durumda hata vermemesi için   
 
     def choose_file(self):
         file_path = fd.askopenfilename()
@@ -124,7 +116,6 @@ class WordMemorizationApp(tk.Frame):
             self.next_question()
         else:
             mb.showerror("Error", "You have to choose an Exel file ^^")
-
 
     def check_answer(self, answer):
         selected_text = self.answer_buttons[answer]["text"]
@@ -146,7 +137,6 @@ class WordMemorizationApp(tk.Frame):
             self.master.bind('<Return>', lambda event: self.next_button.invoke())
             self.master.bind("<space>", lambda event: self.next_button.invoke())
 
-
     def next_question(self):
         for i in range(4):
             self.answer_buttons[i].config(state=tk.NORMAL, text="", bg="SystemButtonFace")
@@ -155,7 +145,7 @@ class WordMemorizationApp(tk.Frame):
         self.current_answer_index = -1  # Eklendi: doğru cevabın index'i sıfırlanır
         self.next_button.config(state=tk.DISABLED)
 
-            # Call choose_file only if workbook is not already loaded
+        # Call choose_file only if workbook is not already loaded
         if not self.workbook:
             self.choose_file()
         else:
@@ -176,21 +166,20 @@ class WordMemorizationApp(tk.Frame):
 
             random.shuffle(choices)
 
+            self.word_label.config(text=english_sentence)
 
-        self.word_label.config(text=english_sentence)
+            for i in range(4):
+                wrapped_text = "\n".join(textwrap.wrap(choices[i], width=25))
+                self.answer_buttons[i].config(text=wrapped_text, bg="SystemButtonFace")
 
-        for i in range(4):
-            wrapped_text = "\n".join(textwrap.wrap(choices[i], width=25))
-            self.answer_buttons[i].config(text=wrapped_text, bg="SystemButtonFace")
-
-        self.current_sentence = english_sentence
-        self.current_answer = turkish_sentence
-        self.current_answer_index = choices.index(turkish_sentence)
+            self.current_sentence = english_sentence
+            self.current_answer = turkish_sentence
+            self.current_answer_index = choices.index(turkish_sentence)
 
 
 root = tk.Tk()
 
-root.iconbitmap("assets/brain.ico") # Burada, ikonun yolunu belirtin
+root.iconbitmap("assets/brain.ico")  # Burada, ikonun yolunu belirtin
 
 # Center the window on the screen
 window_width = 1920
@@ -203,5 +192,3 @@ root.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
 app = WordMemorizationApp(master=root)
 app.mainloop()
-
-
