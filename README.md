@@ -11,7 +11,7 @@ This app asking you, which words you have to learn. Thats why good idea to devel
 # Sample Excel Files
  📁[Words From The Promised Neverland.xlsx](https://github.com/user-attachments/files/16915196/Words.From.The.Promised.Neverland.xlsx)  
  
- 📂[Words From Sword Art Online Ep;1.xlsx](https://github.com/user-attachments/files/16915200/Words.From.Sword.Art.Online.Ep.1.xlsx)
+ 📁[Words From Sword Art Online Ep;1.xlsx](https://github.com/user-attachments/files/16915200/Words.From.Sword.Art.Online.Ep.1.xlsx)
 
 
  # Dependencies
